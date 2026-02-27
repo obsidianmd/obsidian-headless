@@ -1,0 +1,46 @@
+{
+	"name": "obsidian-headless",
+	"version": "0.0.1",
+	"description": "Headless client for Obsidian services",
+	"main": "cli.js",
+	"bin": {
+		"ob": "cli.js"
+	},
+	"engines": {
+		"node": ">=22.0.0"
+	},
+	"os": [
+		"darwin",
+		"linux",
+		"win32"
+	],
+	"cpu": [
+		"x64",
+		"arm64"
+	],
+	"files": [
+		"cli.js",
+		"btime",
+		"package.json",
+		"README.md"
+	],
+	"keywords": [
+		"obsidian",
+		"sync",
+		"vault",
+		"markdown",
+		"notes"
+	],
+	"homepage": "https://obsidian.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/obsidianmd/obsidian-headless"
+	},
+	"author": "Dynalist Inc.",
+	"license": "UNLICENSED",
+	"dependencies": {
+		"better-sqlite3": "12.6.2",
+		"commander": "14.0.3",
+		"keytar": "7.9.0"
+	}
+}
