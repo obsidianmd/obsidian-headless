@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.7
+
+- Fixed lock failure on file systems returning floating point modified times.
+- Fixed some initialization errors were previously caught and completely ignored, leading to no output on failure.
+
 ## 0.0.6
 
 - Fixed default value of file type configuration not properly applied, causing images to not sync.
