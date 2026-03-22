@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.9
+
+- Fixed NaN passed to setTimeout causing a warning to show in the console.
+- Improved sync-setup error messaging for when encryption key validation failed.
+
 ## 0.0.8
 
 - Add publish support.

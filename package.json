@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-headless",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"description": "Headless client for Obsidian services",
 	"main": "cli.js",
 	"bin": {
