@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Added `ob sync --only-folder <folder>` to limit sync to a single vault-relative folder, including continuous sync mode. Attribution: `B.Newbold`.
+- Added local checkout install and development workflow documentation to `README.md`. Attribution: `B.Newbold`.
+
 ## 0.0.9
 
 - Fixed NaN passed to setTimeout causing a warning to show in the console.

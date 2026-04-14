@@ -3,6 +3,8 @@
 Headless client for [Obsidian Sync](https://obsidian.md/sync) and [Obsidian Publish](https://obsidian.md/publish).
 Sync and publish your vaults from the command line without the desktop app.
 
+Fork-specific changes in this repository are attributed to `B.Newbold`.
+
 Requires Node.js 22 or later.
 
 ## Install
@@ -10,6 +12,46 @@ Requires Node.js 22 or later.
 ```bash
 npm install -g obsidian-headless
 ```
+
+Install from a local checkout:
+
+```bash
+cd /path/to/obsidian-headless/repo
+npm install
+npm pack --pack-destination /tmp
+npm install -g /tmp/obsidian-headless-0.0.9-bnewbold.1.tgz
+```
+
+After installing, verify the CLI and available sync options:
+
+```bash
+ob sync --help
+```
+
+## Development
+
+Local development workflow for this fork:
+
+```bash
+cd /path/to/obsidian-headless/repo
+npm install
+node cli.js sync --help
+```
+
+To package and install your local changes globally:
+
+```bash
+npm pack --pack-destination /tmp
+npm install -g /tmp/obsidian-headless-0.0.9-bnewbold.1.tgz
+```
+
+To verify the installed CLI:
+
+```bash
+ob sync --help
+```
+
+This fork's local changes and packaging updates are attributed to `B.Newbold`.
 
 ## Authentication
 
@@ -39,6 +81,9 @@ ob sync
 
 # Run continuous sync (watches for changes)
 ob sync --continuous
+
+# Sync only a single folder
+ob sync --only-folder Claw
 ```
 
 ## Commands
@@ -101,13 +146,14 @@ ob sync-setup --vault <id-or-name> [--path <local-path>] [--password <password>]
 Run sync for a configured vault.
 
 ```
-ob sync [--path <local-path>] [--continuous]
+ob sync [--path <local-path>] [--continuous] [--only-folder <folder>]
 ```
 
 | Option | Description |
 |---|---|
 | `--path` | Local vault path (default: current directory) |
 | `--continuous` | Run continuously, watching for changes |
+| `--only-folder` | Only sync a single vault-relative folder and ignore everything else in the vault |
 
 ### `ob sync-config`
 

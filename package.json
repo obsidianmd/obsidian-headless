@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-headless",
-	"version": "0.0.9",
+	"version": "0.0.9-bnewbold.1",
 	"description": "Headless client for Obsidian services",
 	"main": "cli.js",
 	"bin": {
@@ -37,6 +37,9 @@
 		"url": "https://github.com/obsidianmd/obsidian-headless"
 	},
 	"author": "Dynalist Inc.",
+	"contributors": [
+		"B.Newbold"
+	],
 	"license": "UNLICENSED",
 	"dependencies": {
 		"better-sqlite3": "12.6.2",
