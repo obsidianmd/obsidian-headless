@@ -4,7 +4,9 @@
 	"description": "Headless client for Obsidian services",
 	"main": "cli.js",
 	"bin": {
-		"ob": "cli.js"
+		"ob": "cli.js",
+		"obsidian-sync-install": "scripts/obsidian-sync-install.sh",
+		"obsidian-syncctl": "scripts/obsidian-syncctl.sh"
 	},
 	"engines": {
 		"node": ">=22.0.0"
@@ -22,7 +24,9 @@
 		"cli.js",
 		"btime",
 		"package.json",
-		"README.md"
+		"README.md",
+		"scripts",
+		"systemd"
 	],
 	"keywords": [
 		"obsidian",

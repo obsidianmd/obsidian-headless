@@ -4,6 +4,7 @@
 
 - Added `ob sync --only-folder <folder>` to limit sync to a single vault-relative folder, including continuous sync mode. Attribution: `B.Newbold`.
 - Added local checkout install and development workflow documentation to `README.md`. Attribution: `B.Newbold`.
+- Added user-level systemd helper scripts and an env-file-driven service template for easy enable/disable/start/stop control of continuous sync. Attribution: `B.Newbold`.
 
 ## 0.0.9
 

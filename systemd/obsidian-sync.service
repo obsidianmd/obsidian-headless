@@ -1,0 +1,14 @@
+[Unit]
+Description=Obsidian Sync continuous service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=%h/.config/obsidian-headless/obsidian-sync.env
+ExecStart=/bin/sh -lc 'set -eu; if [ -n "${ONLY_FOLDER:-}" ]; then exec ob sync --continuous --path "$VAULT_PATH" --only-folder "$ONLY_FOLDER"; else exec ob sync --continuous --path "$VAULT_PATH"; fi'
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

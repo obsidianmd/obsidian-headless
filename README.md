@@ -28,6 +28,12 @@ After installing, verify the CLI and available sync options:
 ob sync --help
 ```
 
+Install the user-level systemd helpers from a local checkout:
+
+```bash
+obsidian-sync-install
+```
+
 ## Development
 
 Local development workflow for this fork:
@@ -50,6 +56,55 @@ To verify the installed CLI:
 ```bash
 ob sync --help
 ```
+
+## Systemd
+
+This fork includes a user-level systemd service plus helper scripts for turning continuous sync on and off easily.
+
+Install or refresh the service files:
+
+```bash
+obsidian-sync-install
+```
+
+That installs:
+
+- `~/.config/systemd/user/obsidian-sync.service`
+- `~/.config/obsidian-headless/obsidian-sync.env`
+
+Edit the env file and set:
+
+```bash
+VAULT_PATH=/path/to/your/vault
+ONLY_FOLDER=Claw
+```
+
+`ONLY_FOLDER` is optional. Leave it empty to sync the whole vault.
+
+Control the service with:
+
+```bash
+obsidian-syncctl enable
+obsidian-syncctl start
+obsidian-syncctl status
+obsidian-syncctl logs
+obsidian-syncctl stop
+obsidian-syncctl disable
+```
+
+The service uses:
+
+```bash
+ob sync --continuous --path "$VAULT_PATH" --only-folder "$ONLY_FOLDER"
+```
+
+when `ONLY_FOLDER` is set, and falls back to:
+
+```bash
+ob sync --continuous --path "$VAULT_PATH"
+```
+
+when it is not.
 
 This fork's local changes and packaging updates are attributed to `B.Newbold`.
 
