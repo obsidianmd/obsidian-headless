@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.13
+
+- Fix WebSocket sometimes can get stuck in CONNECTING state indefinitely.
+- Fix changing sync filters can cause remote files to be deleted rather than downloading those files.
+
 ## 0.0.12
 
 - Add `publish-site-options` command back, which was accidentally removed in 0.0.9.
