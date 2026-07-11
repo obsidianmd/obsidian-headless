@@ -4,6 +4,7 @@
 
 - Fix WebSocket sometimes can get stuck in CONNECTING state indefinitely.
 - Fix changing sync filters can cause remote files to be deleted rather than downloading those files.
+- Upgrade better-sqlite to 12.11.1 to support Node 26.
 
 ## 0.0.12
 
