@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.14
+
+- Add `--json` option for most commands.
+
 ## 0.0.13
 
 - Fix WebSocket sometimes can get stuck in CONNECTING state indefinitely.

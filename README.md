@@ -41,6 +41,12 @@ ob sync
 ob sync --continuous
 ```
 
+## JSON output
+
+Most commands accept a `--json` flag that prints machine-readable JSON to stdout.
+In JSON mode, progress messages are suppressed and errors are written to stderr with a non-zero exit code.
+Interactive prompts for passwords are also disabled.
+
 ## Commands
 
 ### `ob login`
@@ -61,22 +67,30 @@ Logout and clear stored credentials.
 
 List all remote vaults available to your account, including shared vaults.
 
+```
+ob sync-list-remote [--json]
+```
+
 ### `ob sync-list-local`
 
 List locally configured vaults and their paths.
+
+```
+ob sync-list-local [--json]
+```
 
 ### `ob sync-create-remote`
 
 Create a new remote vault.
 
 ```
-ob sync-create-remote --name "Vault Name" [--encryption <standard|e2ee>] [--password <password>] [--region <region>]
+ob sync-create-remote --name "Vault Name" [--encryption <standard|end-to-end>] [--password <password>] [--region <region>]
 ```
 
 | Option | Description                                              |
 |---|----------------------------------------------------------|
 | `--name` | Vault name (required)                                    |
-| `--encryption` | `standard` for managed encryption, `e2ee` for end-to-end |
+| `--encryption` | `standard` for managed encryption, `end-to-end` for end-to-end |
 | `--password` | End-to-end encryption password (prompted if omitted)     |
 | `--region` | Server region (automatic if omitted)                     |
 
@@ -85,7 +99,7 @@ ob sync-create-remote --name "Vault Name" [--encryption <standard|e2ee>] [--pass
 Set up sync between a local vault and a remote vault.
 
 ```
-ob sync-setup --vault <id-or-name> [--path <local-path>] [--password <password>] [--device-name <name>] [--config-dir <name>]
+ob sync-setup --vault <id-or-name> [--path <local-path>] [--password <password>] [--device-name <name>] [--config-dir <name>] [--json]
 ```
 
 | Option | Description                                                     |
@@ -95,6 +109,10 @@ ob sync-setup --vault <id-or-name> [--path <local-path>] [--password <password>]
 | `--password` | E2E encryption password (prompted if omitted)                   |
 | `--device-name` | Device name to identify this client in the sync version history |
 | `--config-dir` | Config directory name (default: `.obsidian`)                    |
+| `--json` | Output in JSON format               |
+
+With `--json`, the password prompt is disabled.
+For end-to-end encrypted vaults, `--password` is required.
 
 ### `ob sync`
 
@@ -129,13 +147,14 @@ Run with no options to display the current configuration.
 | `--excluded-folders` | Folders to exclude (comma-separated, empty to clear) |
 | `--device-name` | Device name to identify this client in the sync version history |
 | `--config-dir` | Config directory name (default: `.obsidian`) |
+| `--json` | Output in JSON format |
 
 ### `ob sync-status`
 
 Show sync status and configuration for a vault.
 
 ```
-ob sync-status [--path <local-path>]
+ob sync-status [--path <local-path>] [--json]
 ```
 
 ### `ob sync-unlink`
@@ -150,30 +169,36 @@ ob sync-unlink [--path <local-path>]
 
 List all publish sites available to your account, including shared sites.
 
+```
+ob publish-list-sites [--json]
+```
+
 ### `ob publish-create-site`
 
 Create a new publish site.
 
 ```
-ob publish-create-site --slug <slug>
+ob publish-create-site --slug <slug> [--json]
 ```
 
 | Option | Description |
 |---|---|
 | `--slug` | Site slug used in the publish URL (required) |
+| `--json` | Output in JSON format |
 
 ### `ob publish-setup`
 
 Connect a local vault to a publish site.
 
 ```
-ob publish-setup --site <id-or-slug> [--path <local-path>]
+ob publish-setup --site <id-or-slug> [--path <local-path>] [--json]
 ```
 
 | Option | Description |
 |---|---|
 | `--site` | Site ID or slug (required) |
 | `--path` | Local vault path (default: current directory) |
+| `--json` | Output in JSON format |
 
 ### `ob publish`
 
@@ -182,7 +207,7 @@ Publish vault changes to a connected site. Scans for changes by comparing local 
 Files are selected for publishing based on: frontmatter `publish: true/false` flag (highest priority), excluded/included folders (configured via `publish-config`), and the `--all` flag for untagged files.
 
 ```
-ob publish [--path <local-path>] [--dry-run] [--yes] [--all]
+ob publish [--path <local-path>] [--dry-run] [--yes] [--all] [--json]
 ```
 
 | Option | Description |
@@ -191,13 +216,17 @@ ob publish [--path <local-path>] [--dry-run] [--yes] [--all]
 | `--dry-run` | Show changes without publishing |
 | `--yes` | Publish without prompting for confirmation |
 | `--all` | Include files without a publish flag |
+| `--json` | Output in JSON format |
+
+With `--json`, the confirmation prompt is disabled.
+Unless `--yes` is passed, the command acts as a dry run and only reports pending changes.
 
 ### `ob publish-config`
 
 View or change publish settings for a vault.
 
 ```
-ob publish-config [--path <local-path>] [--includes <folders>] [--excludes <folders>]
+ob publish-config [--path <local-path>] [--includes <folders>] [--excludes <folders>] [--json]
 ```
 
 Run with no options to display the current configuration.
@@ -207,6 +236,7 @@ Run with no options to display the current configuration.
 | `--path` | Local vault path (default: current directory) |
 | `--includes` | Folders to include, comma-separated (empty string to clear) |
 | `--excludes` | Folders to exclude, comma-separated (empty string to clear) |
+| `--json` | Output in JSON format |
 
 ### `ob publish-site-options`
 
@@ -236,6 +266,7 @@ ob publish-site-options [--path <local-path>] [options]
 | `--sliding-window <bool>` | Sliding window mode |
 | `--nav-order <paths>` | Navigation ordering, comma-separated paths in display order (empty string to clear) |
 | `--nav-hidden <items>` | Navigation hidden items, comma-separated paths (empty string to clear) |
+| `--json` | Output in JSON format |
 
 ### `ob publish-unlink`
 
