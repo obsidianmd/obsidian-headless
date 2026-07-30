@@ -3,6 +3,8 @@
 ## 0.0.14
 
 - Add `--json` option for most commands.
+- Removed unnecessary "New file" log lines.
+- Fixed `.obsidian` config folder not properly loaded.
 
 ## 0.0.13
 
